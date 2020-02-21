@@ -13,7 +13,11 @@ TWITTER_ACCESS_TOKEN_SECRET
 HOME_GUILD (guild ID number)
 ```
 
-Also requires that Bot has TwitterData database setup in MongoDB.
+Also requires that Bot has a bot database setup in MongoDB with a twitterdatas collection containing the following fields:
+1. followParameters (array of Twitter IDs of users to follow)
+2. trackParameters (array of keywords to track)
+3. profile (set to "default". Will eventually add ability to load different profiles. ie. Game-day, vacation, etc)
+4. feedChannelID (string of the Discord channel's ID for the tweets to be posted to)
 
 ## Install
 
