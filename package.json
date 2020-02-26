@@ -1,12 +1,13 @@
 {
-  "name": "@battlemanmk2/twitter",
+  "name": "@botsmk2/twitter",
   "version": "1.0.6",
   "description": "Returns a Twitter class that takes a few parameters for the constructor and then streams Twitter data to a selected channel",
   "license": "MIT",
   "repository": "battlemanmk2/twitter",
   "main": "index.js",
   "keywords": [
-    "battlemanmk2"
+    "battlemanmk2",
+    "botsmk2"
   ],
   "dependencies": {
     "discord.js": "11.5.1",
