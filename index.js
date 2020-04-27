@@ -26,7 +26,7 @@ class Twitter {
         this.feedChannelID = twitterParameters.feedChannelID
         if(this.follow && this.track && this.feedChannelID) {  
           if(this.discordClient.guilds.get(process.env.HOME_GUILD)) {
-            this.feedChannel = this.discordClient.guilds.get(process.env.HOME_GUILD).channels.get(this.feedChannelID);
+            this.feedChannel = this.discordClient.guilds.cache.get(process.env.HOME_GUILD).channels.get(this.feedChannelID);
           } else {
             return;
           }
