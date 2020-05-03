@@ -35,10 +35,6 @@ class Twitter {
             if(!this.follow.includes(tweetData.user.id_str)) return;
             const tweetEmbed = this.parseTweet(tweetData);
             if(tweetEmbed != null) {
-              console.log(tweetEmbed.title);
-              console.log(tweetEmbed.fields);
-              console.log(tweetEmbed.description);
-              console.log(tweetEmbed.author);
               this.feedChannel.send({embed: tweetEmbed});
             }
           }.bind(this));
