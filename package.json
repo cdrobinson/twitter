@@ -1,6 +1,6 @@
 {
   "name": "@botsmk2/twitter",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Returns a Twitter class that takes a few parameters for the constructor and then streams Twitter data to a selected channel",
   "license": "MIT",
   "repository": "battlemanmk2/twitter",
