@@ -34,7 +34,13 @@ class Twitter {
           this.stream.on('tweet', function(tweetData) {
             if(!this.follow.includes(tweetData.user.id_str)) return;
             const tweetEmbed = this.parseTweet(tweetData);
-            if(tweetEmbed != null) this.feedChannel.send(tweetEmbed);
+            if(tweetEmbed != null) {
+              console.log(tweetEmbed.title);
+              console.log(tweetEmbed.fields);
+              console.log(tweetEmbed.description);
+              console.log(tweetEmbed.author);
+              this.feedChannel.send({embed: tweetEmbed});
+            }
           }.bind(this));
           this.stream.on('connect', (request)=>{console.log('Connecting to Twitter stream...')});
           this.stream.on('connected', (response)=>{console.log('Connected to Twitter stream!')});
@@ -54,14 +60,16 @@ class Twitter {
 
   parseTweet(tweetData) {
     // console.log(tweetData);
-    const tweetEmbed = new Discord.RichEmbed().setColor('#1DA1F2').setTimestamp();
+    const tweetEmbed = new Discord.MessageEmbed().setColor('#1DA1F2').setTimestamp();
     const user = tweetData.user;
     const retweeted_status = tweetData.retweeted_status || null;
     const quoted_status = tweetData.quoted_status || null;
     const extended_entities = tweetData.extended_entities || null;
 
+    console.log(tweetData);
+
     //Always true values
-    tweetEmbed.setAuthor('@'+user.screen_name, user.profile_image_url, 'https://twitter.com/'+user.screen_name);
+    tweetEmbed.setAuthor(`@${user.screen_name}`, user.profile_image_url, `https://twitter.com/${user.screen_name}`);
     tweetEmbed.setFooter('Twitter', 'https://brandpalettes.com/wp-content/uploads/2018/02/twitter_logo-300x300.png');
     tweetEmbed.setURL('https://twitter.com/' + user.screen_name + '/status/' + tweetData.id_str);
 
@@ -112,7 +120,7 @@ class Twitter {
     }
     if(!retweeted_status && !quoted_status) { //Isn't a retweet nor does it quote another tweet
       console.log('Tweet is a simple tweet'); 
-      tweetEmbed.setDescription(tweetData.text).setTitle(user.name + ' just tweeted:');
+      tweetEmbed.setDescription(tweetData.text).setTitle(`${user.name} just tweeted:`);
     }
     return tweetEmbed;
   }
