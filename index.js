@@ -7,7 +7,7 @@ const twitterSchema = new mongoose.Schema({
   followParameters: [String],
   trackParameters: [String],
   feedChannelID: String
-})
+});
 
 class Twitter {
   constructor(client) {
